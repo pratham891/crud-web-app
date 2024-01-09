@@ -36,12 +36,16 @@ const Home = () => {
               <td>work</td>
               <td>mobile</td>
               <td className='d-flex justify-content-between'>
-                <button className='btn btn-success'>
-                  <RemoveRedEyeIcon />
-                </button>
-                <button className='btn btn-primary'>
-                  <EditIcon />
-                </button>
+                <Link to="/view/:id">
+                  <button className='btn btn-success'>
+                    <RemoveRedEyeIcon />
+                  </button>
+                </Link>
+                <Link to="/edit/:id">
+                  <button className='btn btn-primary'>
+                    <EditIcon />
+                  </button>
+                </Link>
                 <button className='btn btn-danger'>
                   <DeleteIcon />
                 </button>
