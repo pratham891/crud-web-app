@@ -6,10 +6,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const View = () => {
     return (
         <div className='container mt-5'>
-            <div class="card" style={{ width: "24rem" }}>
-                <div class="card-body">
+            <div className="card" style={{ width: "24rem" }}>
+                <div className="card-body">
                     <div className='mb-2 d-flex justify-content-between'>
-                        <h5 class="card-title">Card title</h5>
+                        <h5 className="card-title">Card title</h5>
 
                         <div className="add_btn" style={{ textAlign: "right" }} >
                             <Link to="/edit/:id">
@@ -21,8 +21,8 @@ const View = () => {
                         </div>
 
                     </div>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="/" class="btn btn-primary">Back to Home</a>
+                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="/" className="btn btn-primary">Back to Home</a>
                 </div>
             </div>
         </div>

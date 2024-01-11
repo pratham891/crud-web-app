@@ -20,21 +20,16 @@ const Home = () => {
           <thead>
             <tr className='table-dark'>
               <th scope="col">id</th>
-              <th scope="col">Username</th>
-              <th scope="col">Email</th>
-              <th scope="col">Work</th>
-              <th scope="col">Contact</th>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
               <th scope="col">Action</th>
-              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th scope="row">1</th>
-              <td>username</td>
-              <td>email</td>
-              <td>work</td>
-              <td>mobile</td>
+              <td>title-one</td>
+              <td>description-one</td>
               <td className='d-flex justify-content-between'>
                 <Link to="/view/:id">
                   <button className='btn btn-success'>
