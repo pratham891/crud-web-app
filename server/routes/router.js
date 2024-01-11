@@ -13,7 +13,7 @@ router.post("/add-data", async (req, res) => {
         res.json({ msg: "new data addess successfully" });
     } catch (err) {
         console.log(`error in adding new data`);
-        res.json({ msg: "error in adding new data" });
+        res.status(404).json({ msg: "error in adding new data" });
     }
 });
 
