@@ -1,10 +1,36 @@
 import React from 'react'
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Home = () => {
+
+  const [getData, setGetData] = useState([]);
+
+  const getGetData = async (e) => {
+    const res = await fetch("http://localhost:3003/view", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    const data = await res.json();
+    console.log(data);
+
+    if (res.status === 404 || !data) console.log(`error in fetching data`);
+    else {
+      setGetData(data);
+      console.log(`data fetched successfully`);
+    }
+  }
+
+  useEffect(() => {
+    getGetData();
+  }, []);
+
   return (
     <div className='mt-5'>
       <div className='container mb-5' style={{ overflow: "auto" }}>
@@ -26,26 +52,35 @@ const Home = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>title-one</td>
-              <td>description-one</td>
-              <td className='d-flex justify-content-between'>
-                <Link to="/view/:id">
-                  <button className='btn btn-success'>
-                    <RemoveRedEyeIcon />
-                  </button>
-                </Link>
-                <Link to="/edit/:id">
-                  <button className='btn btn-primary'>
-                    <EditIcon />
-                  </button>
-                </Link>
-                <button className='btn btn-danger'>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
+
+            {
+              getData.map((element, id) => {
+                return (
+                  <>
+                    <tr>
+                      <th scope="row">{id + 1}</th>
+                      <td>{element.title}</td>
+                      <td>{element.description}</td>
+                      <td className='d-flex justify-content-between'>
+                        <Link to={`/view/${element._id}`}>
+                          <button className='btn btn-success'>
+                            <RemoveRedEyeIcon />
+                          </button>
+                        </Link>
+                        <Link to={`/edit/${element._id}`}>
+                          <button className='btn btn-primary'>
+                            <EditIcon />
+                          </button>
+                        </Link>
+                        <button className='btn btn-danger'>
+                          <DeleteIcon />
+                        </button>
+                      </td>
+                    </tr>
+                  </>
+                );
+              })
+            }
           </tbody>
         </table>
 

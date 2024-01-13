@@ -26,7 +26,7 @@ router.get("/view", async (req, res) => {
         res.json(viewDatas);
     } catch (err) {
         console.log(`can't get data`);
-        res.json({ msg: "can't get data" });
+        res.status(404).json({ msg: "can't get data" });
     }
 });
 
@@ -44,7 +44,7 @@ router.get("/view/:id", async (req, res) => {
         }
     } catch (err) {
         console.log(`can't get data`);
-        res.json({ msg: "can't get data" });
+        res.status(404).json({ msg: "can't get data" });
     }
 });
 
@@ -67,7 +67,7 @@ router.put("/edit/:id", async (req, res) => {
         }
     } catch (err) {
         console.log(`can't edit the data`);
-        res.json({ msg: "can't edit the data" });
+        res.status(404).json({ msg: "can't edit the data" });
     }
 });
 
