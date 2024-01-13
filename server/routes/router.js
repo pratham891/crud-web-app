@@ -9,8 +9,8 @@ router.post("/add-data", async (req, res) => {
     try {
         const newData = new data({ title, description });
         await newData.save();
-        console.log(`new data addess successfully`);
-        res.json({ msg: "new data addess successfully" });
+        console.log(`new data added successfully`);
+        res.json({ msg: "new data added successfully" });
     } catch (err) {
         console.log(`error in adding new data`);
         res.status(404).json({ msg: "error in adding new data" });
@@ -84,7 +84,7 @@ router.delete("/delete/:id", async (req, res) => {
         }
     } catch (err) {
         console.log(`can't delete the data`);
-        res.json({ msg: "can't delete the data" });
+        res.status(404).json({ msg: "can't delete the data" });
     }
 });
 

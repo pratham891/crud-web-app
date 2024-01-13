@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteButton from './DeleteButton';
 
 const Home = () => {
 
@@ -72,9 +73,7 @@ const Home = () => {
                             <EditIcon />
                           </button>
                         </Link>
-                        <button className='btn btn-danger'>
-                          <DeleteIcon />
-                        </button>
+                        <DeleteButton id={element._id} />
                       </td>
                     </tr>
                   </>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteButton from './DeleteButton';
 
 const View = () => {
 
@@ -41,9 +42,7 @@ const View = () => {
                             <Link to="/edit/:id">
                                 <button className="btn btn-primary mx-2"><EditIcon /></button>
                             </Link>
-                            <button className="btn btn-danger">
-                                <DeleteIcon />
-                            </button>
+                            <DeleteButton id={id} />
                         </div>
 
                     </div>
