@@ -10,7 +10,7 @@ const View = () => {
     const { id } = useParams();
 
     const getGetData = async (e) => {
-        const res = await fetch(`http://localhost:3003/view/${id}`, {
+        const res = await fetch(`/api/view/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -39,7 +39,7 @@ const View = () => {
                         <h5 className="card-title">{getData.title}</h5>
 
                         <div className="add_btn" style={{ textAlign: "right" }} >
-                            <Link to="/edit/:id">
+                            <Link to={`/edit/${getData._id}`}>
                                 <button className="btn btn-primary mx-2"><EditIcon /></button>
                             </Link>
                             <DeleteButton id={id} />

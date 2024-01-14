@@ -26,7 +26,7 @@ const Edit = () => {
 
         const { title, description } = editData;
 
-        const res = await fetch(`http://localhost:3003/edit/${id}`, {
+        const res = await fetch(`/api/edit/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

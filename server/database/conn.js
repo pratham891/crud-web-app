@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
+import "dotenv/config";
 
-mongoose.connect("mongodb+srv://admin:BrH0ZUR1ScfvAjMl@cluster0.aiwxgtf.mongodb.net/?retryWrites=true&w=majority").then(
+mongoose.connect(process.env.DB).then(
     console.log(`db connected`)
 );

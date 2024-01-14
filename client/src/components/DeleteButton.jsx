@@ -6,7 +6,7 @@ const DeleteButton = ({ id }) => {
     let navigate = useNavigate();
 
     const handleDelete = async (e) => {
-        const res = await fetch(`http://localhost:3003/delete/${id}`, {
+        const res = await fetch(`/api/delete/${id}`, {
             method: "DELETE",
         });
 
