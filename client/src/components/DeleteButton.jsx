@@ -1,7 +1,10 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const DeleteButton = ({ id }) => {
+    let navigate = useNavigate();
+
     const handleDelete = async (e) => {
         const res = await fetch(`http://localhost:3003/delete/${id}`, {
             method: "DELETE",
@@ -13,6 +16,8 @@ const DeleteButton = ({ id }) => {
         else {
             alert(`data deleted successfully`);
             console.log(`data deleted successfully`);
+            if (window.location.pathname == "/") window.location.reload();
+            else navigate("/");
         }
     }
 

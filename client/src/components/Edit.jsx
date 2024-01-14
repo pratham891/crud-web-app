@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 const Edit = () => {
+    const navigate = useNavigate();
 
     const [editData, setEditData] = useState({
         title: "",
@@ -41,6 +42,7 @@ const Edit = () => {
         else {
             alert(`data edited successfully`);
             console.log(`data edited successfully`);
+            navigate("/");
         }
     }
 

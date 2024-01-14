@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AddData = () => {
+    const navigate = useNavigate();
 
     const [data, setData] = useState({
         title: "",
@@ -41,6 +43,7 @@ const AddData = () => {
         } else {
             alert(`data addedd successfully`);
             console.log(`data addedd successfully`);
+            navigate("/");
         }
     }
 
