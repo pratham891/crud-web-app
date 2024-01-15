@@ -10,7 +10,7 @@ const View = () => {
     const { id } = useParams();
 
     const getGetData = async (e) => {
-        const res = await fetch(`/api/view/${id}`, {
+        const res = await fetch(`https://crud-web-app-server.vercel.app/view/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

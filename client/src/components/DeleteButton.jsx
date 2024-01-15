@@ -6,7 +6,7 @@ const DeleteButton = ({ id }) => {
     let navigate = useNavigate();
 
     const handleDelete = async (e) => {
-        const res = await fetch(`/api/delete/${id}`, {
+        const res = await fetch(`https://crud-web-app-server.vercel.app/delete/${id}`, {
             method: "DELETE",
         });
 

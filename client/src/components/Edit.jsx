@@ -26,7 +26,7 @@ const Edit = () => {
 
         const { title, description } = editData;
 
-        const res = await fetch(`/api/edit/${id}`, {
+        const res = await fetch(`https://crud-web-app-server.vercel.app/edit/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

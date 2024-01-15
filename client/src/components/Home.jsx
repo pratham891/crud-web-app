@@ -11,7 +11,7 @@ const Home = () => {
   const [getData, setGetData] = useState([]);
 
   const getGetData = async (e) => {
-    const res = await fetch("/api/view", {
+    const res = await fetch("https://crud-web-app-server.vercel.app/view", {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
