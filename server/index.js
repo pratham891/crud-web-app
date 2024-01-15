@@ -9,6 +9,14 @@ import router from './routes/router.js';
 app.use(cors());
 app.use(express.json());
 
+app.use(cors(
+    {
+        origin:["https://crud-web-app-nine.vercel.app/"],
+        methods: ["POST", "GET", "PUT", "DELETE"],
+        credentials: true
+    }
+));
+
 app.use(router);
 
 app.get("/", (req,res) => {
