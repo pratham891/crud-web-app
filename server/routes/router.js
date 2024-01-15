@@ -4,7 +4,7 @@ import data from '../models/dataSchema.js';
 
 
 // ADD DATA
-router.post("/api/add-data", async (req, res) => {
+router.post("/add-data", async (req, res) => {
     const { title, description } = req.body;
     try {
         const newData = new data({ title, description });
@@ -20,7 +20,7 @@ router.post("/api/add-data", async (req, res) => {
 
 
 // VIEW ALL DATA IN HOME PAGE
-router.get("/api/view", async (req, res) => {
+router.get("/view", async (req, res) => {
     try {
         const viewDatas = await data.find();
         res.json(viewDatas);
@@ -34,7 +34,7 @@ router.get("/api/view", async (req, res) => {
 
 
 // VIEW SINGLE DATA
-router.get("/api/view/:id", async (req, res) => {
+router.get("/view/:id", async (req, res) => {
     try {
         const viewData = await data.findOne({ _id: req.params.id });
         if (viewData) {
@@ -51,7 +51,7 @@ router.get("/api/view/:id", async (req, res) => {
 
 
 // EDIT SINGLE DATA
-router.put("/api/edit/:id", async (req, res) => {
+router.put("/edit/:id", async (req, res) => {
     const { title, description } = req.body;
     try {
         const updatedData = await data.findOneAndUpdate(
@@ -73,7 +73,7 @@ router.put("/api/edit/:id", async (req, res) => {
 
 
 // DELETE DATA
-router.delete("/api/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async (req, res) => {
     try {
         const deletedData = await data.findOneAndDelete({ _id: req.params.id });
 
