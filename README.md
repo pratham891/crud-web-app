@@ -50,6 +50,12 @@ Install the dependencies
 npm i
 ```
 
+Add env file in the src folder and add the following environment variables in the file:
+```
+PORT
+DB
+```
+
 Start the backend server
 ```
 npm start
