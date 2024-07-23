@@ -5,6 +5,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteButton from './DeleteButton';
+import './homeStyle.css';
 
 const Home = () => {
 
@@ -43,7 +44,7 @@ const Home = () => {
           </Link>
         </div>
 
-        <table className="table mt-2">
+        <table className="table table-striped mt-2">
           <thead>
             <tr className='table-dark'>
               <th scope="col">id</th>
@@ -61,7 +62,7 @@ const Home = () => {
                     <tr>
                       <th scope="row">{id + 1}</th>
                       <td>{element.title}</td>
-                      <td>{element.description}</td>
+                      <td className='desc-col'>{element.description}</td>
                       <td className='d-flex justify-content-between'>
                         <Link to={`/view/${element._id}`}>
                           <button className='btn btn-success'>
@@ -73,7 +74,9 @@ const Home = () => {
                             <EditIcon />
                           </button>
                         </Link>
-                        <DeleteButton id={element._id} />
+                        <Link to={`/`}>
+                          <DeleteButton id={element._id} />
+                        </Link>
                       </td>
                     </tr>
                   </>

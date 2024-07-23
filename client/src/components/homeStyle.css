@@ -1,0 +1,11 @@
+tr, td {
+    height: 100px;
+}
+
+.table-dark {
+    height: 50px;
+}
+
+.table-dark > th {
+    text-align: center;
+}
