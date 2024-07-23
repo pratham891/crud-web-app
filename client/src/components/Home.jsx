@@ -62,7 +62,7 @@ const Home = () => {
                     <tr>
                       <th scope="row">{id + 1}</th>
                       <td>{element.title}</td>
-                      <td className='desc-col'>{element.description}</td>
+                      <td>{element.description}</td>
                       <td className='d-flex justify-content-between'>
                         <Link to={`/view/${element._id}`}>
                           <button className='btn btn-success'>
