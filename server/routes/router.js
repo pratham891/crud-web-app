@@ -1,6 +1,7 @@
 import express from 'express';
-const router = express.Router();
 import data from '../models/dataSchema.js';
+import user from '../models/user.js';
+const router = express.Router();
 
 
 // ADD DATA
