@@ -25,4 +25,9 @@ app.get("/", (req,res) => {
     res.send(`this is root route`);
 });
 
+// app.get("/sandbox", (req, res) => {
+//     const sand = req.headers.authorization.split(' ')[1];
+//     res.json({ sand });
+// });
+
 app.listen(PORT, () => {console.log(`server is listening on port ${PORT}`)});

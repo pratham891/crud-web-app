@@ -1,6 +1,5 @@
 import express from 'express';
 import data from '../models/dataSchema.js';
-import user from '../models/user.js';
 const router = express.Router();
 
 

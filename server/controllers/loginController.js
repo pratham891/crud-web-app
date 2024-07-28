@@ -22,7 +22,7 @@ const loginController = async (req, res) => {
         }
 
         // generate jwt token
-        const token = jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN);
+        const token = jwt.sign({ userId: user._id }, process.env.ACCESS_TOKEN, { expiresIn: '10h' });
 
         res.status(200).json({ token });
 
