@@ -11,7 +11,7 @@ const userAuth = async (req, res, next) => {
         req.userId = decodedToken.userId;
         next();
     } catch (err) {
-        res.status(401).json({ err: "Can not authorize user" });
+        res.status(401).json({ err: "Please login again" });
     }
 }
 

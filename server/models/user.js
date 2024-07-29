@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 import data from "./dataSchema.js";
-const { Schema } = mongoose;
+import { dataSchema as postSchema } from "./dataSchema.js";
 
 const userSchema = new mongoose.Schema(
     {
         username: { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
-        posts: [{ type: Schema.Types.ObjectId, ref: data }]
+        posts: [postSchema]
     }
 );
 
