@@ -5,6 +5,9 @@ const signupController = async (req, res) => {
 
     try {
 
+        const existUser = await user.findOne({ email });
+        if (existUser) {return res.status(409).json({ msg: "user already exists" })}
+
         const newUser = new user({ username, email, password });
         await newUser.save();
 
