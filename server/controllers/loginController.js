@@ -28,7 +28,7 @@ const loginController = async (req, res) => {
 
     } catch (err) {
         console.log(`unable to login`);
-        res.status(404).json({ err: "unable to login" });
+        res.status(500).json({ err: "unable to login" });
     }
 }
 
