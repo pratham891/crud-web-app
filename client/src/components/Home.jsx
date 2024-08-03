@@ -1,29 +1,41 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteButton from './DeleteButton';
 import './homeStyle.css';
 
+
 const Home = () => {
+  const navigate = useNavigate();
 
   const [getData, setGetData] = useState([]);
 
   const getGetData = async (e) => {
-    const res = await fetch("https://crud-web-app-server.vercel.app/view", {
+    const email = localStorage.getItem("email");
+    const token = localStorage.getItem("token");    
+
+    const res = await fetch("http://localhost:3003/view", {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "email": email,
+        "authorization": token
       }
     });
 
     const data = await res.json();
-    console.log(data);
 
-    if (res.status === 404 || !data) console.log(`error in fetching data`);
-    else {
+    if (res.status === 401) {
+      alert(`Pls login first`);
+      console.log(`err`);
+      navigate("/login");
+    }
+
+    if (res.status === 500 || !data) console.log(`internal server error`);
+    else if (res.status === 200) {
       setGetData(data);
       console.log(`data fetched successfully`);
     }

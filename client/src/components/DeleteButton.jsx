@@ -6,16 +6,28 @@ const DeleteButton = ({ id }) => {
     let navigate = useNavigate();
 
     const handleDelete = async (e) => {
-        const res = await fetch(`https://crud-web-app-server.vercel.app/delete/${id}`, {
+        const email = localStorage.getItem("email");
+        const token = localStorage.getItem("token");
+
+        const res = await fetch(`http://localhost:3003/delete/${id}`, {
             method: "DELETE",
+            "email": email,
+            "authorization": token
         });
 
         const data = await res.json();
 
-        if (res.status === 404 || !data) console.log(`error in deleteing data`);
-        else {
+        if (res.status === 401) {
+            alert(`pls login to perform this action`);
+            navigate("/login");
+        }
+
+        if (res.status === 500 || !data) alert(`internal server error`);
+        else if (res.status == 404) {
+            alert(`such post or user not found`);
+        }
+        else if (res.status === 200) {
             alert(`data deleted successfully`);
-            console.log(`data deleted successfully`);
             if (window.location.pathname == "/") window.location.reload();
             else navigate("/");
         }

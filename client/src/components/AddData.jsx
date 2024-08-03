@@ -23,12 +23,17 @@ const AddData = () => {
     const sendData = async (e) => {
         e.preventDefault();
 
+        const email = localStorage.getItem("email");
+        const token = localStorage.getItem("token");
+
         const { title, description } = data;
 
-        const res = await fetch("https://crud-web-app-server.vercel.app/add-data", {
+        const res = await fetch("http://localhost:3003/add-data", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "email": email,
+                "authorization": token
             },
             body: JSON.stringify({
                 title, description
@@ -38,9 +43,16 @@ const AddData = () => {
         const dataData = await res.json();
         console.log(dataData);
 
-        if (res.status === 404 || !data) {
-            alert(`error in saving data`);
-        } else {
+        if (res.status === 401) {
+            alert(`pls login to continue`);
+            navigate("/login");
+        }
+
+        if (res.status === 500 || !data) {
+            alert(`internal server error`);
+        } else if (res.status === 404) {
+            alert(`no such user found`);
+        } else if (res.status === 200) {
             alert(`data addedd successfully`);
             console.log(`data addedd successfully`);
             navigate("/");

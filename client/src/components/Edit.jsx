@@ -24,12 +24,17 @@ const Edit = () => {
     const sendData = async (e) => {
         e.preventDefault();
 
+        const email = localStorage.getItem("email");
+        const token = localStorage.getItem("token");
+
         const { title, description } = editData;
 
-        const res = await fetch(`https://crud-web-app-server.vercel.app/edit/${id}`, {
+        const res = await fetch(`http://localhost:3003/edit/${id}`, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "email": email,
+                "authorization": token
             },
             body: JSON.stringify({
                 title, description
@@ -38,10 +43,16 @@ const Edit = () => {
 
         const data = await res.json();
 
-        if (res.status === 404 || !data) console.log(`error in editing data`);
-        else {
+        if (res.status === 401) {
+            alert(`pls login first`);
+        }
+
+        if (res.status === 500 || !data) console.log(`internal server error`);
+        else if (res.status === 404) {
+            alert(`such post or user not found`);
+        }
+        else if (res.status === 200) {
             alert(`data edited successfully`);
-            console.log(`data edited successfully`);
             navigate("/");
         }
     }

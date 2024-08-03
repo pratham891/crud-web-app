@@ -1,29 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteButton from './DeleteButton';
 
 const View = () => {
+    const navigate = useNavigate();
 
     const [getData, setGetData] = useState([]);
     const { id } = useParams();
 
     const getGetData = async (e) => {
+        const email = localStorage.getItem("email");
+        const token = localStorage.getItem("token");
+
         const res = await fetch(`https://crud-web-app-server.vercel.app/view/${id}`, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "email": email,
+                "authorization": token
             }
         });
 
         const data = await res.json();
-        console.log(data);
 
-        if (res.status === 404 || !data) console.log(`error in fetching data`);
-        else {
+        if (res.status === 401) {
+            alert(`pls login to continue`);
+            navigate("/login");
+        }
+
+        if (res.status === 500 || !data) alert(`internal server error`);
+        else if (res.status === 404) {
+            alert(`such post or user not found`);
+        }
+        else if (res.status === 200) {
             setGetData(data);
-            console.log(`data fetched successfully`);
+            // console.log(`data fetched successfully`);
         }
     }
 

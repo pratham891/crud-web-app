@@ -41,6 +41,9 @@ const Register = () => {
 
     if (res.status === 404 || !newUser) {
       alert(`error in signing up`);
+    } else if (res.status === 409) {
+      alert(`email already exists`);
+      navigate("/register");
     } else {
       alert(`registration success`);
       console.log(`new user addedd successfully`);

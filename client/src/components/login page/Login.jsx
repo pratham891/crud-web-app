@@ -39,9 +39,8 @@ const Login = () => {
 
         const existUser = await res.json();
 
-        // store jwt and email in cookies and in every client route, check the cookies
-        // if not authenticated, redirect to login
-        // or else give access to the route which client is req for
+        localStorage.setItem("token", existUser.token);
+        localStorage.setItem("email", email);
 
         if (res.status === 500 || !existUser) {
             alert(`can not sign in`);
