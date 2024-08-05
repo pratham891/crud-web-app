@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteButton from './DeleteButton';
 
 const View = () => {
@@ -14,7 +13,7 @@ const View = () => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
 
-        const res = await fetch(`https://crud-web-app-server.vercel.app/view/${id}`, {
+        const res = await fetch(`http://localhost:3003/view/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +35,6 @@ const View = () => {
         }
         else if (res.status === 200) {
             setGetData(data);
-            // console.log(`data fetched successfully`);
         }
     }
 
