@@ -56,27 +56,30 @@ const Register = () => {
       <div className="mb-3">
         <label for="addUsername" className="form-label">Username</label>
         <input type="text" className="form-control" id="addUsername" name='username'
-        value={newUser.username}
-        onChange={updateData}
+          value={newUser.username}
+          onChange={updateData}
         />
       </div>
       <div className="mb-3">
         <label for="addEmail" className="form-label">Email</label>
         <input type="text" className="form-control" id="addEmail" name='email'
-        value={newUser.email}
-        onChange={updateData}
+          value={newUser.email}
+          onChange={updateData}
         />
       </div>
       <div className="mb-3">
         <label for="addPassword" className="form-label">Password</label>
         <input type="password" className="form-control" id="addPassword" name='password'
-        value={newUser.password}
-        onChange={updateData}
+          value={newUser.password}
+          onChange={updateData}
         />
       </div>
       <button type="submit" className="btn btn-primary" onClick={sendNewUser} >
         Submit
       </button>
+      <div className='register-redirect' style={{ marginTop: "20px" }}>
+        <p>Existing User? <a href="/login">Click here to Login</a></p>
+      </div>
     </form>
   )
 }

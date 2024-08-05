@@ -39,16 +39,15 @@ const Login = () => {
 
         const existUser = await res.json();
 
-        localStorage.setItem("token", existUser.token);
-        localStorage.setItem("email", email);
-
         if (res.status === 500 || !existUser) {
             alert(`can not sign in`);
         } else if (res.status === 404) {
             alert(`user not found or wrong email`);
         } else if (res.status === 401) {
             alert(`wrong password`);
-        }else if (res.status === 200) {
+        } else if (res.status === 200) {
+            localStorage.setItem("token", existUser.token);
+            localStorage.setItem("email", email);
             alert(`login success`);
             navigate("/");
         }
@@ -73,6 +72,9 @@ const Login = () => {
             <button type="submit" className="btn btn-primary" onClick={sendUser} >
                 Submit
             </button>
+            <div className='register-redirect' style={{ marginTop: "20px" }}>
+                <p>New User? <a href="/register">Click here to Register</a></p>
+            </div>
         </form>
     );
 }

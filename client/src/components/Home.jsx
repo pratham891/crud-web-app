@@ -15,7 +15,7 @@ const Home = () => {
 
   const getGetData = async (e) => {
     const email = localStorage.getItem("email");
-    const token = localStorage.getItem("token");    
+    const token = localStorage.getItem("token");
 
     const res = await fetch("http://localhost:3003/view", {
       method: "GET",

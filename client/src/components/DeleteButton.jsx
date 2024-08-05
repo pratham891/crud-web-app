@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const DeleteButton = ({ id }) => {
@@ -11,8 +11,10 @@ const DeleteButton = ({ id }) => {
 
         const res = await fetch(`http://localhost:3003/delete/${id}`, {
             method: "DELETE",
-            "email": email,
-            "authorization": token
+            headers: {
+                "email": email,
+                "authorization": token
+            }
         });
 
         const data = await res.json();
