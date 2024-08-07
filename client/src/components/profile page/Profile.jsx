@@ -10,7 +10,7 @@ const Profile = () => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
 
-        const res = await fetch(`http://localhost:3003/profile/`, {
+        const res = await fetch(`/api/profile/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",

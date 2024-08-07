@@ -9,7 +9,7 @@ const DeleteButton = ({ id }) => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
 
-        const res = await fetch(`http://localhost:3003/delete/${id}`, {
+        const res = await fetch(`/api/delete/${id}`, {
             method: "DELETE",
             headers: {
                 "email": email,

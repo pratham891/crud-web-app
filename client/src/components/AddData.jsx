@@ -28,7 +28,7 @@ const AddData = () => {
 
         const { title, description } = data;
 
-        const res = await fetch("http://localhost:3003/add-data", {
+        const res = await fetch("/api/add-data", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

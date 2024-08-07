@@ -17,7 +17,7 @@ const Home = () => {
     const email = localStorage.getItem("email");
     const token = localStorage.getItem("token");
 
-    const res = await fetch("http://localhost:3003/view", {
+    const res = await fetch("/api/view", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

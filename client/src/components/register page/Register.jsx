@@ -26,7 +26,7 @@ const Register = () => {
 
     const { username, email, password } = newUser;
 
-    const res = await fetch("http://localhost:3003/register", {
+    const res = await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
