@@ -7,7 +7,9 @@ export default defineConfig({
       '/api': {
         target: 'https://crud-web-app-server.vercel.app',
         rewrite: (path) => path.replace(/^\/api/, ''),
-        changeOrigin: true
+        changeOrigin: true,
+        secure: false,
+        ws: true,
       },
     }
   },
