@@ -5,7 +5,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://crud-web-app-server.vercel.app',
+        target: 'http://localhost:3003',
         rewrite: (path) => path.replace(/^\/api/, ''),
         changeOrigin: true
       },
