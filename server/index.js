@@ -10,13 +10,13 @@ import userRoutes from './routes/userRoutes.js';
 app.use(cors());
 app.use(express.json());
 
-// app.use(cors(
-//     {
-//         origin:["https://crud-web-app-nine.vercel.app"],
-//         methods: ["POST", "GET", "PUT", "DELETE"],
-//         credentials: true
-//     }
-// ));
+app.use(cors(
+    {
+        origin:["https://crud-web-app-nine.vercel.app"],
+        methods: ["POST", "GET", "PUT", "DELETE"],
+        credentials: true
+    }
+));
 
 app.use(router);
 app.use(userRoutes);
