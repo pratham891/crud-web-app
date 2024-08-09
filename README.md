@@ -54,6 +54,7 @@ Add env file in the src folder and add the following environment variables in th
 ```
 PORT
 DB
+ACCESS_TOKEN
 ```
 
 Start the backend server
