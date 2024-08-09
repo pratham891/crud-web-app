@@ -26,7 +26,7 @@ const Register = () => {
 
     const { username, email, password } = newUser;
 
-    const res = await fetch("/api/register", {
+    const res = await fetch("https://crud-web-app-server.vercel.app/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -10,7 +10,7 @@ const Profile = () => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
 
-        const res = await fetch(`/api/profile/`, {
+        const res = await fetch(`https://crud-web-app-server.vercel.app/profile/`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
