@@ -28,7 +28,15 @@ const Home = () => {
       }
     });
 
-    const data = await res.json();
+    let data={};
+
+    try {
+      const jsonData = await res.json();
+      data = jsonData;
+    } catch (err) {
+      console.log('An error occurred: ', err);
+      console.log('Data is not a valid JSON string: ', data);
+    }
 
     if (res.status === 401) {
       alert(`Pls login first`);
