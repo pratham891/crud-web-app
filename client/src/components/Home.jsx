@@ -14,8 +14,7 @@ const Home = () => {
   const [getData, setGetData] = useState([]);
 
   const getGetData = async (e) => {
-    e.preventDefault();
-    
+
     const email = localStorage.getItem("email");
     const token = localStorage.getItem("token");
 
