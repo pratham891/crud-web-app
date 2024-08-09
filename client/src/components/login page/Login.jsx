@@ -27,7 +27,7 @@ const Login = () => {
 
         const { email, password } = user;
 
-        const res = await fetch("/api/login", {
+        const res = await fetch("https://crud-web-app-server.vercel.app/login", {
             method: "Post",
             headers: {
                 "Content-Type": "application/json"
