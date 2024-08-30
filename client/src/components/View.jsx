@@ -44,7 +44,7 @@ const View = () => {
 
     return (
         <div className='container mt-5'>
-            <div className="card" style={{ width: "24rem" }}>
+            <div className="card">
                 <div className="card-body">
                     <div className='mb-2 d-flex justify-content-between'>
                         <h5 className="card-title">{getData.title}</h5>

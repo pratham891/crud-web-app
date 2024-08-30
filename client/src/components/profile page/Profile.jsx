@@ -41,13 +41,13 @@ const Profile = () => {
 
     return (
         <div className='container mt-5'>
-            <div className="card" style={{ width: "24rem" }}>
+            <div className="card">
                 <div className="card-body">
                     <div className='mb-2 d-flex justify-content-between'>
                         <h2 className="card-title">{getData.username}</h2>
                         <h6 className="card-title">{getData.email}</h6>
                     </div>
-                    
+
                     <a href="/" className="btn btn-primary">Back to Home</a>
                 </div>
             </div>

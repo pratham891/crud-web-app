@@ -28,7 +28,7 @@ const Home = () => {
       }
     });
 
-    let data={};
+    let data = {};
 
     try {
       const jsonData = await res.json();
@@ -83,8 +83,18 @@ const Home = () => {
                   <>
                     <tr>
                       <th scope="row">{id + 1}</th>
-                      <td>{element.title}</td>
-                      <td>{element.description}</td>
+                      <td style={{ maxWidth: "200px" }}>
+                        {element.title.length > 50
+                          ? `${element.title.substring(0, 50)}...`
+                          : element.title
+                        }
+                      </td>
+                      <td style={{ maxWidth: "400px" }}>
+                        {element.description.length > 100
+                          ? `${element.description.substring(0, 100)}...`
+                          : element.description
+                        }
+                      </td>
                       <td className='d-flex justify-content-between'>
                         <Link to={`/view/${element._id}`}>
                           <button className='btn btn-success'>
