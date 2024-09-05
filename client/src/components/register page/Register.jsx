@@ -44,7 +44,14 @@ const Register = () => {
     } else if (res.status === 409) {
       alert(`email already exists`);
       navigate("/register");
-    } else {
+    }
+
+    else if (res.status === 403) {
+      alert(`Invalid Email Format`);
+      navigate("/register");
+    }
+
+    else {
       alert(`registration success`);
       console.log(`new user addedd successfully`);
       navigate("/login");
