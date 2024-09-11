@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -26,7 +25,7 @@ const Register = () => {
 
     const { username, email, password } = newUser;
 
-    const res = await fetch("https://crud-web-app-server.vercel.app/register", {
+    const res = await fetch("http://localhost:3003/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

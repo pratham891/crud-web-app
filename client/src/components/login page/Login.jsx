@@ -1,6 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ReCaptchaV2 from 'react-google-recaptcha';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -9,6 +9,16 @@ const Login = () => {
         email: "",
         password: ""
     });
+
+    // reCaptchaV2 token state variable
+    const [gToken, setGToken] = useState("");
+    const [submitEnabled, setSubmitEnabled] = useState(false);
+
+    useEffect(() => {
+        if (gToken.length) {
+            setSubmitEnabled(true);
+        }
+    }, [gToken]);
 
     // function to keep track of updating values
     const updateData = (e) => {
@@ -27,7 +37,7 @@ const Login = () => {
 
         const { email, password } = user;
 
-        const res = await fetch("https://crud-web-app-server.vercel.app/login", {
+        const res = await fetch("http://localhost:3003/login", {
             method: "Post",
             headers: {
                 "Content-Type": "application/json"
@@ -53,6 +63,16 @@ const Login = () => {
         }
     }
 
+    // token for reCaptchaV2
+    // const handleToken = (token) => {
+    //     setToken(token);
+    // }
+
+    // create recaptchav2 token
+    const handleToken = (token) => {
+        setGToken(token);
+    }
+
     return (
         <form className='container mt-5'>
             <div className="mb-3">
@@ -69,7 +89,17 @@ const Login = () => {
                     onChange={updateData}
                 />
             </div>
-            <button type="submit" className="btn btn-primary" onClick={sendUser} >
+            <div className="reCaptcha mb-3">
+                <ReCaptchaV2
+                    sitekey={import.meta.env.VITE_RECAPTCHAV2_SITE_KEY}
+                    onChange={handleToken}
+                />
+            </div>
+            <button
+                disabled={!submitEnabled}
+                type="submit"
+                className={submitEnabled ? "btn btn-primary" : "btn btn-secondary"}
+                onClick={sendUser} >
                 Submit
             </button>
             <div className='register-redirect' style={{ marginTop: "20px" }}>
