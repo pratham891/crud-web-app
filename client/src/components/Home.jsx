@@ -19,7 +19,7 @@ const Home = ({ setProgress }) => {
     const token = localStorage.getItem("token");
 
     // setProgress = 10;
-    setProgress(10);
+    setProgress(20);
 
     const res = await fetch("https://crud-web-app-server.vercel.app/view", {
       method: "GET",
@@ -114,7 +114,7 @@ const Home = ({ setProgress }) => {
                           </button>
                         </Link>
                         <Link to={`/`}>
-                          <DeleteButton id={element._id} />
+                          <DeleteButton id={element._id} setProgress={setProgress} />
                         </Link>
                       </td>
                     </tr>

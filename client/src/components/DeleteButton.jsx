@@ -2,12 +2,15 @@ import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const DeleteButton = ({ id }) => {
+const DeleteButton = ({ id, setProgress }) => {
     let navigate = useNavigate();
 
     const handleDelete = async (e) => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
+
+        setProgress(10);
+        setTimeout(setProgress(70), 500);
 
         const res = await fetch(`https://crud-web-app-server.vercel.app/delete/${id}`, {
             method: "DELETE",
@@ -18,6 +21,7 @@ const DeleteButton = ({ id }) => {
         });
 
         const data = await res.json();
+        setProgress(100);
 
         if (res.status === 401) {
             alert(`pls login to perform this action`);

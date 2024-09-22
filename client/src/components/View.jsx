@@ -59,7 +59,7 @@ const View = ({ setProgress }) => {
                             <Link to={`/edit/${getData._id}`}>
                                 <button className="btn btn-primary mx-2"><EditIcon /></button>
                             </Link>
-                            <DeleteButton id={id} />
+                            <DeleteButton id={id} setProgress={setProgress} />
                         </div>
 
                     </div>
