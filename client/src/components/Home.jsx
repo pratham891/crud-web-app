@@ -8,7 +8,7 @@ import DeleteButton from './DeleteButton';
 import './homeStyle.css';
 
 
-const Home = () => {
+const Home = ({ setProgress }) => {
   const navigate = useNavigate();
 
   const [getData, setGetData] = useState([]);
@@ -17,6 +17,9 @@ const Home = () => {
 
     const email = localStorage.getItem("email");
     const token = localStorage.getItem("token");
+
+    // setProgress = 10;
+    setProgress(10);
 
     const res = await fetch("https://crud-web-app-server.vercel.app/view", {
       method: "GET",
@@ -27,11 +30,15 @@ const Home = () => {
         "authorization": token
       }
     });
+    // setProgress = 50;
+    setProgress(50);
 
     let data = {};
 
     try {
       const jsonData = await res.json();
+      // setProgress = 100;
+      setProgress(100);
       data = jsonData;
     } catch (err) {
       console.log('An error occurred: ', err);

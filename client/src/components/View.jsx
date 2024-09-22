@@ -3,7 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteButton from './DeleteButton';
 
-const View = () => {
+const View = ({ setProgress }) => {
     const navigate = useNavigate();
 
     const [getData, setGetData] = useState([]);
@@ -12,6 +12,8 @@ const View = () => {
     const getGetData = async (e) => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
+
+        setProgress(10);
 
         const res = await fetch(`https://crud-web-app-server.vercel.app/view/${id}`, {
             method: "GET",
@@ -22,7 +24,11 @@ const View = () => {
             }
         });
 
+        setProgress(50);
+
         const data = await res.json();
+
+        setProgress(100);
 
         if (res.status === 401) {
             alert(`pls login to continue`);
