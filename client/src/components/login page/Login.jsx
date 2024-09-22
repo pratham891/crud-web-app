@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setProgress }) => {
     const navigate = useNavigate();
 
     let [user, setUser] = useState({
@@ -27,6 +27,9 @@ const Login = () => {
 
         const { email, password } = user;
 
+        setProgress(10);
+        setTimeout(setProgress(70), 500);
+
         const res = await fetch("https://crud-web-app-server.vercel.app/login", {
             method: "Post",
             headers: {
@@ -38,6 +41,8 @@ const Login = () => {
         });
 
         const existUser = await res.json();
+
+        setProgress(100);
 
         if (res.status === 500 || !existUser) {
             alert(`can not sign in`);

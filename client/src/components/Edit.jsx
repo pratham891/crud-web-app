@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 
-const Edit = () => {
+const Edit = ({ setProgress }) => {
     const navigate = useNavigate();
 
     const [editData, setEditData] = useState({
@@ -29,6 +29,9 @@ const Edit = () => {
 
         const { title, description } = editData;
 
+        setProgress(10);
+        setTimeout(setProgress(70), 500);
+
         const res = await fetch(`https://crud-web-app-server.vercel.app/edit/${id}`, {
             method: "PUT",
             headers: {
@@ -42,6 +45,7 @@ const Edit = () => {
         });
 
         const data = await res.json();
+        setProgress(100);
 
         if (res.status === 401) {
             alert(`pls login first`);

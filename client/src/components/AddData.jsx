@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const AddData = () => {
+const AddData = ({ setProgress }) => {
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -28,6 +28,9 @@ const AddData = () => {
 
         const { title, description } = data;
 
+        setProgress(10);
+        setTimeout(setProgress(70), 500);
+
         const res = await fetch("https://crud-web-app-server.vercel.app/add-data", {
             method: "POST",
             headers: {
@@ -41,6 +44,7 @@ const AddData = () => {
         });
 
         const dataData = await res.json();
+        setProgress(100);
         console.log(dataData);
 
         if (res.status === 401) {

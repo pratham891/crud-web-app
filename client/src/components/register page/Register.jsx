@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Register = () => {
+const Register = ({ setProgress }) => {
   const navigate = useNavigate();
 
   const [newUser, setNewUser] = useState({
@@ -26,6 +26,9 @@ const Register = () => {
 
     const { username, email, password } = newUser;
 
+    setProgress(10);
+    setTimeout(setProgress(70), 500);
+
     const res = await fetch("https://crud-web-app-server.vercel.app/register", {
       method: "POST",
       headers: {
@@ -37,6 +40,7 @@ const Register = () => {
     });
 
     const newUserData = await res.json();
+    setProgress(100);
     console.log(newUserData);
 
     if (res.status === 404 || !newUser) {

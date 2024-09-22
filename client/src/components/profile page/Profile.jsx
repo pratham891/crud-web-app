@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Profile = () => {
+const Profile = ({ setProgress }) => {
     const navigate = useNavigate();
 
     const [getData, setGetData] = useState([]);
@@ -9,6 +9,8 @@ const Profile = () => {
     const getGetData = async (e) => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
+
+        setProgress(10);
 
         const res = await fetch(`https://crud-web-app-server.vercel.app/profile/`, {
             method: "GET",
@@ -19,7 +21,11 @@ const Profile = () => {
             }
         });
 
+        setProgress(50);
+
         const data = await res.json();
+
+        setProgress(100);
 
         if (res.status === 401) {
             alert(`pls login to continue`);
