@@ -76,6 +76,7 @@ npm run dev
 - MongoDB
 - Express.js
 - React.js
+- Redux (Toolkit)
 - Node.js
 - Mongoose
 - Bootstrap
