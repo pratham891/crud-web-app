@@ -11,9 +11,14 @@ import Register from './components/register page/Register';
 import Login from './components/login page/Login';
 import Profile from './components/profile page/Profile';
 import LoadingBar from 'react-top-loading-bar';
+// ~~~ Redux ~~~
+import { useSelector, useDispatch } from 'react-redux'
+import { progressVal } from './redux/progress/progressSlice';
 
 function App() {
-  const [progress, setProgress] = useState(0);
+  // const [progress, setProgress] = useState(0);
+  const progress = useSelector((state) => state.progress.value);
+  const dispatch = useDispatch();
 
   return (
     <div className='App'>
@@ -21,18 +26,18 @@ function App() {
         color='#f11946'
         height={4}
         progress={progress}
-        onLoaderFinished={() => setProgress(0)}
+        onLoaderFinished={() => dispatch(progressVal(0))}
       />
       <Navbar />
       <BrowserRouter>
         <Routes>
-          <Route path="/register" element={<Register setProgress={setProgress} />} />
-          <Route path='/login' element={<Login setProgress={setProgress} />} />
-          <Route path='/profile' element={<Profile setProgress={setProgress} />} />
-          <Route path="/" element={<Home setProgress={setProgress} />} />
-          <Route path="/add-data" element={<AddData setProgress={setProgress} />} />
-          <Route path="/view/:id" element={<View setProgress={setProgress} />} />
-          <Route path="/edit/:id" element={<Edit setProgress={setProgress} />} />
+          <Route path="/register" element={<Register />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/add-data" element={<AddData />} />
+          <Route path="/view/:id" element={<View />} />
+          <Route path="/edit/:id" element={<Edit />} />
         </Routes>
       </BrowserRouter>
     </div>

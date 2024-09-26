@@ -6,9 +6,14 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteButton from './DeleteButton';
 import './homeStyle.css';
+// ~~~ Redux ~~~
+import { useDispatch } from 'react-redux'
+import { progressVal } from '../redux/progress/progressSlice';
 
 
-const Home = ({ setProgress }) => {
+const Home = () => {
+  const dispatch = useDispatch(); //redux
+
   const navigate = useNavigate();
 
   const [getData, setGetData] = useState([]);
@@ -18,8 +23,7 @@ const Home = ({ setProgress }) => {
     const email = localStorage.getItem("email");
     const token = localStorage.getItem("token");
 
-    // setProgress = 10;
-    setProgress(20);
+    dispatch(progressVal(20)); //redux
 
     const res = await fetch("https://crud-web-app-server.vercel.app/view", {
       method: "GET",
@@ -30,15 +34,14 @@ const Home = ({ setProgress }) => {
         "authorization": token
       }
     });
-    // setProgress = 50;
-    setProgress(50);
+
+    dispatch(progressVal(50)); //redux
 
     let data = {};
 
     try {
       const jsonData = await res.json();
-      // setProgress = 100;
-      setProgress(100);
+      dispatch(progressVal(100));
       data = jsonData;
     } catch (err) {
       console.log('An error occurred: ', err);
@@ -114,7 +117,7 @@ const Home = ({ setProgress }) => {
                           </button>
                         </Link>
                         <Link to={`/`}>
-                          <DeleteButton id={element._id} setProgress={setProgress} />
+                          <DeleteButton id={element._id} />
                         </Link>
                       </td>
                     </tr>

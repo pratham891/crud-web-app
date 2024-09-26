@@ -1,16 +1,20 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
+// Redux
+import { useDispatch } from 'react-redux';
+import { progressVal } from '../redux/progress/progressSlice';
 
-const DeleteButton = ({ id, setProgress }) => {
+const DeleteButton = ({ id }) => {
+    const dispatch = useDispatch(); //redux
+
     let navigate = useNavigate();
 
     const handleDelete = async (e) => {
         const email = localStorage.getItem("email");
         const token = localStorage.getItem("token");
 
-        setProgress(10);
-        setTimeout(setProgress(70), 500);
+        dispatch(progressVal(50));
 
         const res = await fetch(`https://crud-web-app-server.vercel.app/delete/${id}`, {
             method: "DELETE",
@@ -21,7 +25,7 @@ const DeleteButton = ({ id, setProgress }) => {
         });
 
         const data = await res.json();
-        setProgress(100);
+        dispatch(progressVal(100));
 
         if (res.status === 401) {
             alert(`pls login to perform this action`);

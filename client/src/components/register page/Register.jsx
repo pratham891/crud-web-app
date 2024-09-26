@@ -1,8 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Redux
+import { useDispatch } from 'react-redux';
+import { progressVal } from '../../redux/progress/progressSlice';
 
-const Register = ({ setProgress }) => {
+const Register = () => {
+  const dispatch = useDispatch(); //redux
+
   const navigate = useNavigate();
 
   const [newUser, setNewUser] = useState({
@@ -26,8 +31,12 @@ const Register = ({ setProgress }) => {
 
     const { username, email, password } = newUser;
 
-    setProgress(10);
-    setTimeout(setProgress(70), 500);
+    // setProgress(10);
+    // setTimeout(setProgress(70), 500);
+    () => dispatch(progressVal(20));
+    () => {
+      setTimeout(() => dispatch(progressVal(70)), 1000);
+    }
 
     const res = await fetch("https://crud-web-app-server.vercel.app/register", {
       method: "POST",
@@ -40,7 +49,8 @@ const Register = ({ setProgress }) => {
     });
 
     const newUserData = await res.json();
-    setProgress(100);
+    // setProgress(100);
+    () => dispatch(progressVal(100));
     console.log(newUserData);
 
     if (res.status === 404 || !newUser) {
