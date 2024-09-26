@@ -1,8 +1,13 @@
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Redux
+import { useDispatch } from 'react-redux';
+import { progressVal } from '../../redux/progress/progressSlice';
 
-const Login = ({ setProgress }) => {
+const Login = () => {
+    const dispatch = useDispatch(); //redux
+
     const navigate = useNavigate();
 
     let [user, setUser] = useState({
@@ -27,8 +32,7 @@ const Login = ({ setProgress }) => {
 
         const { email, password } = user;
 
-        setProgress(10);
-        setTimeout(setProgress(70), 500);
+        dispatch(progressVal(50));
 
         const res = await fetch("https://crud-web-app-server.vercel.app/login", {
             method: "Post",
@@ -42,7 +46,7 @@ const Login = ({ setProgress }) => {
 
         const existUser = await res.json();
 
-        setProgress(100);
+        dispatch(progressVal(100));
 
         if (res.status === 500 || !existUser) {
             alert(`can not sign in`);

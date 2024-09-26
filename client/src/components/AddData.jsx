@@ -1,8 +1,13 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// Redux
+import { useDispatch } from 'react-redux'
+import { progressVal } from '../redux/progress/progressSlice';
 
-const AddData = ({ setProgress }) => {
+const AddData = () => {
+    const dispatch = useDispatch(); //redux
+
     const navigate = useNavigate();
 
     const [data, setData] = useState({
@@ -28,8 +33,7 @@ const AddData = ({ setProgress }) => {
 
         const { title, description } = data;
 
-        setProgress(10);
-        setTimeout(setProgress(70), 500);
+        dispatch(progressVal(20));
 
         const res = await fetch("https://crud-web-app-server.vercel.app/add-data", {
             method: "POST",
@@ -44,7 +48,7 @@ const AddData = ({ setProgress }) => {
         });
 
         const dataData = await res.json();
-        setProgress(100);
+        dispatch(progressVal(100));
         console.log(dataData);
 
         if (res.status === 401) {
